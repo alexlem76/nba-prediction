@@ -1,6 +1,6 @@
 import os
 import re
-from list_filenames import list_filenames   
+from utils.list_functions import list_filenames   
 
 # ancien_nom = './ml-nba/html/games/76ers vs Mavericks, January 1, 2026 _ Basketball-Reference.com.html'
 dossier = './ml-nba/html/games/'

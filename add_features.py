@@ -14,8 +14,7 @@
 # opp_fg_pct : Pourcentage de tirs adverses réussis
 
 import pandas as pd
-from list_filenames import list_filenames
-from bs4 import BeautifulSoup
+from utils.list_functions import list_filenames, find_opposite_team
 
 df = pd.read_csv('./csv/nba_features.csv')
 dossier = './html/games/'
@@ -25,6 +24,8 @@ filename_list = list_filenames(dossier)
 for file, row in zip(filename_list, range(len(df))):
     df.loc[row, 'match_id'] = file
     df.loc[row, 'team'] = 'DAL'
-    df.loc[row, 'opp'] = None # ALLER CHERCHER DANS LES HTML
+    df.loc[row, 'opp'] = find_opposite_team(f'{dossier}{file}.html')
+    # faire fct qui va chercher d'un coup dans les games/csv les autres features sauf ratings
+    df.loc[row, 'pts'] = None
 
 df.to_csv('./csv/nba_features.csv', index=False)

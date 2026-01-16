@@ -13,7 +13,7 @@ columns = features_general + features_off + features_def + features_context + la
 df = pd.DataFrame(columns=columns)
 
 # Step 4 Specify the file path to save data
-csv_file_path = './ml-nba/csv/nba_features.csv'
+csv_file_path = './csv/nba_features.csv'
 
 # Step 5 Write the DataFrame to a CSV file using to_csv() function where file path is passed
 df.to_csv(csv_file_path, index=False)

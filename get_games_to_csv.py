@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from bs4 import BeautifulSoup
-from list_filenames import list_filenames
+from utils.list_functions import list_filenames
 import time
 
 start = time.time()
@@ -12,7 +12,7 @@ filename_list = list_filenames(dossier)
 for file in filename_list:
     ancien_chemin = os.path.join(dossier, file)
     with open(ancien_chemin, 'r', encoding='utf-8') as f:
-        content = f.read()
+            content = f.read()
 
     # Parse HTML content with lxml parser (faster and more robust than default)
     soup = BeautifulSoup(content, 'html.parser')
@@ -39,8 +39,6 @@ for file in filename_list:
         df = df[df["Starters"] != "Reserves"]
 
         df.rename(columns={'Starters': 'Players'}, inplace=True)
-
-        # print(df)
 
         df.to_csv(f'./ml-nba/csv/games/{file[:-5]}_{team}.csv', index=True)
 
