@@ -23,10 +23,8 @@ def find_opposite_team(html_file_path):
 
     # Parse HTML content with lxml parser (faster and more robust than default)
     soup = BeautifulSoup(content, 'html.parser')
-
-    teams = []
     line_score = soup.find('table', id='line_score') # prendre les deux noms d'équipes
-
+    
     # On parcourt les lignes du tbody
     for row in line_score.tbody.find_all("tr"):
         team_cell = row.find("th", {"data-stat": "team"})
